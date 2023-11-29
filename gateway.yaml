@@ -1,10 +1,11 @@
 server:
-   port: 8888
+  port: 8081
 spring:
-   profiles:
-      active: native
-    cloud:
-       config:
-          server:
-             native:
-                searchLocations: file:///Users/josedavi/Desenvolvimento/WorkSpace/Pessoal/sample-spring-microservices/sample-spring-microservices/config-server/src/main/resources/config         
+  cloud: 
+   gateway: 
+    routes:
+      - id: catalog
+        uri: lb://catalog/
+        predicates:
+          - Path=/games/**
+            
